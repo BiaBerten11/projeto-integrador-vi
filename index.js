@@ -1,11 +1,14 @@
 const express = require('express');
+
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Olá, mundo do GitHub!');
-});
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}/`);
+const produtoRoutes = require('./src/routes/produto.routes');
+
+app.use(produtoRoutes);
+
+app.listen(PORT, () => {
+    console.log(`Servidor ativo na porta ${PORT}`);
 });
